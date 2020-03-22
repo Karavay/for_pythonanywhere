@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+  {% for p in draft_posts %}
+    <div class="post">
+      <div class="date">
+        <p>Создано: {{ p.created_date }}</p>
+      </div>
+      <h1><a href="{% url 'post_detail' pk=p.pk %}">{{ p.title }}</a></h1>
+      <p>{{ p.text|linebreaksbr }}</p>
+      <a href='{% url "publish" p.pk %}' class = 'btn btn-default'>Publish</a>
+      <a class="btn btn-default" href="{% url 'post_remove' pk=p.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+    </div>
+  {% endfor %}
+{% endblock %}
